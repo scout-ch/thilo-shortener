@@ -29,11 +29,11 @@ jobs:
           context: ./
           load: true
           tags: |
-            ghcr.io/scout-ch/shortener/thilo_shortener:latest
+            ghcr.io/scout-ch/thilo-shortener/thilo_shortener:latest
       - name: Push docker container
         uses: docker/build-push-action@v5
         with:
           push: true
           context: ./
           tags: |
-            ghcr.io/scout-ch/shortener/thilo_shortener:latest
+            ghcr.io/scout-ch/thilo-shortener/thilo_shortener:latest
