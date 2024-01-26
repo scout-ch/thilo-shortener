@@ -21,3 +21,5 @@ FROM nginx:1.24.0 as release
 COPY --from=build nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
