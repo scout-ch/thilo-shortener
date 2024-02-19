@@ -15,7 +15,7 @@ RUN python convertToNginx.py
 ############################################################################################################
 # RELEASE
 ############################################################################################################
-FROM nginx:1.24.0 as release
+FROM nginx:1.25.4 as release
 
 # Path: /etc/nginx/nginx.conf
 COPY --from=build nginx.conf /etc/nginx/nginx.conf
