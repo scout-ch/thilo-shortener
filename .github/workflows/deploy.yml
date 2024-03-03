@@ -38,7 +38,7 @@ jobs:
           tags: |
             ghcr.io/scout-ch/thilo-shortener/thilo_shortener:latest
       - name: Run GetEnv command
-        uses: abhisek91/github-actions-jelastic@master
+        uses: DovnarAlexander/github-actions-jelastic@master
         with:
           jelastic_url: app.mycloud.by
           jelastic_username: ${{ secrets.JELASTIC_USERNAME }}
