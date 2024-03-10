@@ -58,7 +58,7 @@ jobs:
       - name: Add to artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: nginx_conf
+          name: linkshortner_drop
           path: ./nginx.conf
 
   deployProd:
@@ -70,7 +70,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: nginx_conf
+          name: linkshortner_drop
           path: ./nginx.conf
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
