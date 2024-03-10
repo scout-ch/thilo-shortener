@@ -37,10 +37,46 @@ jobs:
           context: ./
           tags: |
             ghcr.io/scout-ch/thilo-shortener/thilo_shortener:latest
-      - name: Run GetEnv command
-        uses: DovnarAlexander/github-actions-jelastic@master
+
+  buildNGINXConf:
+    name: Build NGINX Conf
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          jelastic_url: app.jpc.infomaniak.com/
-          jelastic_username: ${{ secrets.JELASTIC_USERNAME }}
-          jelastic_password: ${{ secrets.JELASTIC_TOKEN }}
-          task: environment/control/getenvs
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install
+      - name: Run the script
+        run: |
+          python3 ./convertToNginx.py
+      - name: Add to artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: nginx_conf
+          path: ./nginx.conf
+
+  deployProd:
+    name: Deploy Thilo App Prod
+    needs: buildNGINXConf
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: nginx_conf
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          server-dir: /conf
+          dry-run: true
