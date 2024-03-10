@@ -80,4 +80,3 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           server-dir: /conf/
-          dry-run: true
