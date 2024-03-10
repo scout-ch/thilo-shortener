@@ -69,6 +69,7 @@ jobs:
 
     steps:
       - uses: actions/download-artifact@v4
+      - run: ls -la
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
