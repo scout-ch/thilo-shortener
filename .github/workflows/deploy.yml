@@ -62,7 +62,7 @@ jobs:
           path: ./nginx.conf
 
   deployProd:
-    name: Deploy Thilo App Prod
+    name: Deploy Thilo Link Shortner Prod
     needs: buildNGINXConf
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
@@ -71,6 +71,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: nginx_conf
+          path: ./nginx.conf
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
