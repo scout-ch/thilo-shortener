@@ -24,7 +24,7 @@ http {
         listen 80;
         listen [::]:80;
 
-        server_name shlink.thilo.ch;
+        server_name shortener.thilo.learn2cloud.ch;
 
 """
     for link in links:
