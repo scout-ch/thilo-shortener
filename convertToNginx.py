@@ -20,11 +20,21 @@ events {
 }
 
 http {
-    server {
-        listen 80;
-        listen [::]:80;
+include mime.types;
+default_type application/octet-stream;
+sendfile on;
 
-        server_name shortener.thilo.learn2cloud.ch;
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name shortener.thilo.learn2cloud.ch;
+
+    location /
+    {
+        root /etc/nginx/html;
+        index index.html;
+    }
 
 """
     for link in links:
@@ -38,7 +48,7 @@ http {
     nginx += """
     }
 }
-    """
+"""
 
     return nginx
 
