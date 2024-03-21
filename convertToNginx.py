@@ -28,7 +28,7 @@ server {
     listen 80;
     listen [::]:80;
 
-    server_name shortener.thilo.learn2cloud.ch;
+    server_name link.thilo.scouts.ch;
 
     location /
     {
