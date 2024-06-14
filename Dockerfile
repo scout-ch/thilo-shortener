@@ -19,6 +19,7 @@ FROM nginx:1.25.4 as release
 
 # Path: /etc/nginx/nginx.conf
 COPY --from=build nginx.conf /etc/nginx/nginx.conf
+COPY html /etc/nginx/html
 
 EXPOSE 80
 
